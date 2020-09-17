@@ -3,18 +3,18 @@ services:
     - docker
 
 before_install:
-    - docker build -t moaz/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t moazgalbat/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true moaz/react-test npm test
+    - docker run -e CI=true moazgalbat/react-test npm test
 
 after_success:
-    - docker build -t moaz/multi-client ./client
-    - docker build -t moaz/multi-nginx ./nginx
-    - docker build -t moaz/multi-server ./server
-    - docker build -t moaz/multi-worker ./worker
+    - docker build -t moazgalbat/multi-client ./client
+    - docker build -t moazgalbat/multi-nginx ./nginx
+    - docker build -t moazgalbat/multi-server ./server
+    - docker build -t moazgalbat/multi-worker ./worker
     - echo "$DOCKEr_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    - docker push moaz/multi-client 
-    - docker push moaz/multi-nginx   
-    - docker push moaz/multi-server  
-    - docker push moaz/multi-worker  
+    - docker push moazgalbat/multi-client 
+    - docker push moazgalbat/multi-nginx   
+    - docker push moazgalbat/multi-server  
+    - docker push moazgalbat/multi-worker  
